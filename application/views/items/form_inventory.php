@@ -52,7 +52,7 @@
 		<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('items_stock_location'), 'stock_location', array('class'=>'control-label col-xs-3')); ?>
 			<div class='col-xs-8'>
-				<?php echo form_dropdown('stock_location', $stock_locations, current($stock_locations), array('onchange'=>'fill_quantity(this.value)', 'class'=>'form-control'));	?>
+				<?php echo form_dropdown('stock_location', $stock_locations, $user_info->location_id, array('onchange'=>'fill_quantity(this.value)', 'class'=>'form-control'));	?>
 			</div>
 		</div>
 
@@ -94,9 +94,18 @@
 <?php echo form_close(); ?>
 
 <script type="text/javascript">
+
+function fill_quantity(val) 
+{   
+    var item_quantities = <?php echo json_encode($item_quantities); ?>;
+    document.getElementById("quantity").value = parseFloat(item_quantities[val]).toFixed(<?php echo quantity_decimals(); ?>);
+}
+
 //validation and submit handling
 $(document).ready(function()
-{		
+{	
+	fill_quantity(<?php echo $user_info->location_id;?>);//init
+
 	$('#item_form').validate({
 		submitHandler:function(form)
 		{
@@ -131,10 +140,4 @@ $(document).ready(function()
 		}
 	});
 });
-
-function fill_quantity(val) 
-{   
-    var item_quantities = <?php echo json_encode($item_quantities); ?>;
-    document.getElementById("quantity").value = parseFloat(item_quantities[val]).toFixed(<?php echo quantity_decimals(); ?>);
-}
 </script>

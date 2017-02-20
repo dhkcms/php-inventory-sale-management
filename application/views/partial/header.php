@@ -89,11 +89,13 @@
 </head>
 
 <body>
-	<div class="wrapper">
+	<div class="wrapper" id="body-content">
 		<div class="topbar">
 			<div class="container">
 				<div class="navbar-left">
-					<div id="liveclock"><?php echo date($this->config->item('dateformat') . ' ' . $this->config->item('timeformat')) ?></div>
+					<span title="当前查看的仓库位置"><?php echo $user_info->location_name;?></span>
+					&nbsp;
+					<a href="employees/locations" class="modal-dlg">[查看其他仓库]</a>
 				</div>
 				
 				<div class="navbar-right" style="margin:0">
@@ -131,6 +133,6 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container" id="main-content">
 			<div class="row">
 	 

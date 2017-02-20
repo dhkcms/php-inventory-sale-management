@@ -2,13 +2,18 @@
 	</div>
 
 	<div id="footer">
-		<div class="jumbotron push-spaces">
-			<strong><?php echo $this->lang->line('common_you_are_using_ospos'); ?>
-  			<?php echo $this->config->item('application_version'); ?> - <?php echo substr('$Id$', 5, 7); ?></strong>.
-			<?php echo $this->lang->line('common_please_visit_my'); ?>
-			<a href="https://github.com/jekkos/opensourcepos" target="_blank"><?php echo $this->lang->line('common_website'); ?></a>
-			<?php echo $this->lang->line('common_learn_about_project'); ?>
-		</div>
+			 You are using 
+  			<a href="https://github.com/jekkos/opensourcepos" target="_blank">
+  				Open Source Point Of Sale
+  			</a>
+  			 Version <?php echo $this->config->item('application_version'); ?>
+  			- <?php echo substr('$Id$', 5, 7); ?>
 	</div>
+
+	</div>
+	<script type="text/javascript">
+		dialog_support.init("a.modal-dlg, button.modal-dlg");
+	</script>
+
 </body>
 </html>

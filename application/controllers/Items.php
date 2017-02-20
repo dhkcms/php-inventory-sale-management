@@ -40,11 +40,9 @@ class Items extends Secure_Controller
 		$sort = $this->input->get('sort');
 		$order = $this->input->get('order');
 
-		$this->item_lib->set_item_location($this->input->get('stock_location'));
+		//$this->item_lib->set_item_location($this->input->get('stock_location'));
 
-		$filters = array('start_date' => $this->input->get('start_date'),
-						'end_date' => $this->input->get('end_date'),
-						'stock_location_id' => $this->item_lib->get_item_location(),
+		$filters = array('stock_location_id' => $this->item_lib->get_item_location(),
 						'empty_upc' => FALSE,
 						'low_inventory' => FALSE, 
 						'is_serialized' => FALSE,
@@ -177,6 +175,9 @@ class Items extends Secure_Controller
 			
 			$item_info->receiving_quantity = 0;
 			$item_info->reorder_level = 0;
+
+			$item_info->category="未分类";
+			$item_info->wage_price=0;
 		}
 
 		$data['item_info'] = $item_info;
@@ -327,21 +328,13 @@ class Items extends Secure_Controller
 			'item_number' => $this->input->post('item_number') == '' ? NULL : $this->input->post('item_number'),
 			'cost_price' => parse_decimals($this->input->post('cost_price')),
 			'unit_price' => parse_decimals($this->input->post('unit_price')),
+			'wage_price' => parse_decimals($this->input->post('wage_price')),
 			'reorder_level' => parse_decimals($this->input->post('reorder_level')),
 			'receiving_quantity' => parse_decimals($this->input->post('receiving_quantity')),
 			'allow_alt_description' => $this->input->post('allow_alt_description') != NULL,
 			'is_serialized' => $this->input->post('is_serialized') != NULL,
 			'deleted' => $this->input->post('is_deleted') != NULL,
-			'custom1' => $this->input->post('custom1') == NULL ? '' : $this->input->post('custom1'),
-			'custom2' => $this->input->post('custom2') == NULL ? '' : $this->input->post('custom2'),
-			'custom3' => $this->input->post('custom3') == NULL ? '' : $this->input->post('custom3'),
-			'custom4' => $this->input->post('custom4') == NULL ? '' : $this->input->post('custom4'),
-			'custom5' => $this->input->post('custom5') == NULL ? '' : $this->input->post('custom5'),
-			'custom6' => $this->input->post('custom6') == NULL ? '' : $this->input->post('custom6'),
-			'custom7' => $this->input->post('custom7') == NULL ? '' : $this->input->post('custom7'),
-			'custom8' => $this->input->post('custom8') == NULL ? '' : $this->input->post('custom8'),
-			'custom9' => $this->input->post('custom9') == NULL ? '' : $this->input->post('custom9'),
-			'custom10' => $this->input->post('custom10') == NULL ? '' : $this->input->post('custom10')
+			'is_infinite' => $this->input->post('is_infinite') !=NULL
 		);
 		
 		if(!empty($upload_data['orig_name']))
@@ -612,16 +605,6 @@ class Items extends Secure_Controller
 	                        'supplier_id'			=> $this->Supplier->exists($data[3]) ? $data[3] : NULL,
 	                        'allow_alt_description'	=> $data[12] != '' ? '1' : '0',
 	                        'is_serialized'			=> $data[13] != '' ? '1' : '0',
-	                        'custom1'				=> $data[14],
-	                        'custom2'				=> $data[15],
-	                        'custom3'				=> $data[16],
-	                        'custom4'				=> $data[17],
-	                        'custom5'				=> $data[18],
-	                        'custom6'				=> $data[19],
-	                        'custom7'				=> $data[20],
-	                        'custom8'				=> $data[21],
-	                        'custom9'				=> $data[22],
-	                        'custom10'				=> $data[23]
 	                    );
 	                    $item_number = $data[0];
 	                    $invalidated = FALSE;

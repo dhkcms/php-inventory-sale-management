@@ -373,7 +373,7 @@ class Config extends Secure_Controller
 	private function _clear_session_state()
 	{
 		$this->load->library('sale_lib');
-		$this->sale_lib->clear_sale_location();
+		$this->sale_lib->clear_transaction_location();
 		$this->sale_lib->clear_all();
 		$this->load->library('receiving_lib');
 		$this->receiving_lib->clear_stock_source();

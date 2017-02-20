@@ -445,7 +445,7 @@ $(document).ready(function()
 
 	$("#recv_print_after_sale").change(function()
 	{
-		$.post('<?php echo site_url($controller_name."/set_print_after_sale");?>', {recv_print_after_sale: $(this).is(":checked")});
+		$.post('<?php echo site_url($controller_name."/set_print_after_transaction");?>', {recv_print_after_sale: $(this).is(":checked")});
 	});
 
 	$('#item,#supplier').click(function()

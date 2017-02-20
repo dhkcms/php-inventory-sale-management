@@ -165,5 +165,17 @@ class Employees extends Persons
 			echo json_encode(array('success' => FALSE,'message' => $this->lang->line('employees_cannot_be_deleted')));
 		}
 	}
+
+	//settings for stock location
+	public function locations($location_id)
+	{
+		if(empty($location_id)){
+			$data['locations']=$this->Stock_location->get_location_name_session();
+			$this->load->view("employees/form_stock_location", $data);
+		}else{
+			$this->Employee->save_employee_location($location_id);
+			redirect('home');
+		}
+	}
 }
 ?>

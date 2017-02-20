@@ -48,7 +48,7 @@
 		<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('items_stock_location'), 'stock_location', array('class'=>'control-label col-xs-3')); ?>
 			<div class='col-xs-8'>
-				<?php echo form_dropdown('stock_location', $stock_locations, current($stock_locations), array('onchange'=>'display_stock(this.value);', 'class'=>'form-control'));	?>
+				<?php echo form_dropdown('stock_location', $stock_locations, $user_info->location_id, array('onchange'=>'display_stock(this.value);', 'class'=>'form-control'));	?>
 			</div>
 		</div>
 
@@ -100,7 +100,7 @@
 <script type="text/javascript">
 $(document).ready(function()
 {
-    display_stock(<?php echo json_encode(key($stock_locations)); ?>);
+    display_stock(<?php echo $user_info->location_id;?>);
 });
 
 function display_stock(location_id)
@@ -123,7 +123,7 @@ function display_stock(location_id)
     // Add new query to tbody
     for (var index = 0; index < inventory_data.length; index++) 
     {                
-        var data = inventory_data[index];
+        var data = inventory_data[index];//console.log(data);
         if(data['trans_location'] == location_id)
         {
             var tr = document.createElement('tr');
@@ -141,8 +141,21 @@ function display_stock(location_id)
 			td.setAttribute("style", "text-align:center");
             tr.appendChild(td);
             
-            td = document.createElement('td');            
-            td.appendChild(document.createTextNode(data['trans_comment']));
+            td = document.createElement('td');
+            
+            var link=document.createElement('a');var req_url=null;
+            if(data['ref_type']=='0'){req_url='sales';}
+            else if(data['ref_type']=='1'){req_url='receivings';}
+            else if(data['ref_type']=='2'){req_url='manufactures';}
+            else if(data['ref_type']=='3'){req_url='transports';}
+
+            if(req_url!=null){link.setAttribute("href", req_url+"/update?id="+data['ref_id']);}
+
+			link.setAttribute("target", "_blank");
+			link.setAttribute("style", "color:black;text-decoration:none");
+            link.appendChild(document.createTextNode(data['trans_comment']));
+            td.appendChild(link);
+
             tr.appendChild(td);
 
             table.appendChild(tr);

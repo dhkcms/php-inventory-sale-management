@@ -53,11 +53,12 @@ class Sale extends CI_Model
 				sales.sale_id AS sale_id,
 				DATE(sales.sale_time) AS sale_date,
 				sales.sale_time AS sale_time,
+				sales.last_edit_time AS last_edit_time,
 				sales.comment AS comment,
 				sales.invoice_number AS invoice_number,
 				sales.employee_id AS employee_id,
 				sales.customer_id AS customer_id,
-				CONCAT(customer_p.first_name, " ", customer_p.last_name) AS customer_name,
+				customer_p.first_name AS customer_name,
 				customer_p.first_name AS first_name,
 				customer_p.last_name AS last_name,
 				customer_p.email AS email,
@@ -154,7 +155,7 @@ class Sale extends CI_Model
 				sales.sale_time AS sale_time,
 				sales.invoice_number AS invoice_number,
 				SUM(sales_items.quantity_purchased) AS items_purchased,
-				CONCAT(customer_p.first_name, " ", customer_p.last_name) AS customer_name,
+				customer_p.first_name AS customer_name,
 				customer.company_name AS company_name,
 				' . "
 				ROUND($sale_subtotal, $decimals) AS subtotal,
@@ -642,8 +643,11 @@ class Sale extends CI_Model
 	public function get_payment_options($giftcard = TRUE)
 	{
 		$payments = array();
+
+		$options=array('现金','微信','银行转账','支付宝','其他');
+		foreach ($options as $value) {$payments[$value]=$value;}
 		
-		if($this->config->item('payment_options_order') == 'debitcreditcash')
+		/*if($this->config->item('payment_options_order') == 'debitcreditcash')
 		{
 			$payments[$this->lang->line('sales_debit')] = $this->lang->line('sales_debit');
 			$payments[$this->lang->line('sales_credit')] = $this->lang->line('sales_credit');
@@ -667,7 +671,7 @@ class Sale extends CI_Model
 		if($giftcard)
 		{
 			$payments[$this->lang->line('sales_giftcard')] = $this->lang->line('sales_giftcard');
-		}
+		}*/
 
 		return $payments;
 	}
@@ -769,7 +773,7 @@ class Sale extends CI_Model
 					sales.comment,
 					sales.invoice_number,
 					sales.customer_id,
-					CONCAT(customer_p.first_name, " ", customer_p.last_name) AS customer_name,
+					customer_p.first_name AS customer_name,
 					customer_p.first_name AS customer_first_name,
 					customer_p.last_name AS customer_last_name,
 					customer_p.email AS customer_email,

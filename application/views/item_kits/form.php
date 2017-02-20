@@ -22,7 +22,7 @@
 				<?php echo form_textarea(array(
 						'name'=>'description',
 						'id'=>'description',
-						'class'=>'form-control input-sm',
+						'class'=>'form-control input-sm','rows'=>'3',
 						'value'=>$item_kit_info->description)
 						);?>
 			</div>

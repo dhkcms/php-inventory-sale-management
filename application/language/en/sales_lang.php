@@ -1,11 +1,11 @@
 <?php 
 
+$lang["module_sales"] = "Sales";
+$lang["module_sales_desc"] = "Process sales and returns";
+
 $lang["sales_add_payment"] = "Add Payment";
-$lang["sales_amount_due"] = "Amount Due";
-$lang["sales_amount_tendered"] = "Amount Tendered";
 $lang["sales_cancel_sale"] = "Cancel";
 $lang["sales_cash"] = "Cash";
-$lang["sales_change_due"] = "Change Due";
 $lang["sales_check"] = "Check";
 $lang["sales_check_balance"] = "Check remainder";
 $lang["sales_comment"] = "Comment";
@@ -90,7 +90,6 @@ $lang["sales_remove_customer"] = "Remove Customer";
 $lang["sales_return"] = "Return";
 $lang["sales_sale"] = "Sale";
 $lang["sales_sale_for_customer"] = "Customer:";
-$lang["sales_sale_time"] = "Time";
 $lang["sales_select_customer"] = "Select Customer (Optional)";
 $lang["sales_send_invoice"] = "Send Invoice";
 $lang["sales_send_receipt"] = "Send Receipt";
@@ -121,3 +120,13 @@ $lang["sales_unsuspend_and_delete"] = "";
 $lang["sales_update"] = "Update";
 $lang["sales_date_range"] = "Date Range";
 $lang["sales_none_selected"] = "You have not selected any sales to delete";
+
+$lang["transaction_time"] = "Time";
+$lang["transaction_change_due"] = "Change Due";
+$lang["transaction_amount_due"] = "Amount Due";
+$lang["transaction_amount_tendered"] = "Amount Tendered";
+$lang["stock_locations_stock_location"]="Stock location(receiving)";
+
+$lang["sales_help"]="<p>das</p><p>sales的帮助</p>";
+$lang["receivings_help"]="<p>嗯嗯</p><p>receivings的帮助</p>";
+$lang["manufactures_help"]="<p>嗯嗯</p><p>这里是manufactures的帮助</p>";

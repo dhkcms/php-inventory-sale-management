@@ -18,7 +18,8 @@ class Secure_Controller extends CI_Controller
 			redirect('login');
 		}
 
-		$this->track_page($module_id, $module_id);
+		$this->Stock_location->store_all_to_session(FALSE);
+		//$this->track_page($module_id, $module_id);
 
 		$logged_in_employee_info = $model->get_logged_in_employee_info();
 		if(!$model->has_module_grant($module_id, $logged_in_employee_info->person_id) || 

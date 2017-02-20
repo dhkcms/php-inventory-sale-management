@@ -31,17 +31,6 @@ $(document).ready(function()
 </script>
 
 <div id="title_bar" class="btn-toolbar">
-	<?php
-	if ($controller_name == 'customers')
-	{
-	?>
-		<button class='btn btn-info btn-sm pull-right modal-dlg' data-btn-submit='<?php echo $this->lang->line('common_submit') ?>' data-href='<?php echo site_url($controller_name."/excel_import"); ?>'
-				title='<?php echo $this->lang->line('customers_import_items_excel'); ?>'>
-			<span class="glyphicon glyphicon-import">&nbsp</span><?php echo $this->lang->line('common_import_excel'); ?>
-		</button>
-	<?php
-	}
-	?>
 	<button class='btn btn-info btn-sm pull-right modal-dlg' data-btn-submit='<?php echo $this->lang->line('common_submit') ?>' data-href='<?php echo site_url($controller_name."/view"); ?>'
 			title='<?php echo $this->lang->line($controller_name. '_new'); ?>'>
 		<span class="glyphicon glyphicon-user">&nbsp</span><?php echo $this->lang->line($controller_name. '_new'); ?>
@@ -52,9 +41,6 @@ $(document).ready(function()
 	<div class="pull-left btn-toolbar">
 		<button id="delete" class="btn btn-default btn-sm">
 			<span class="glyphicon glyphicon-trash">&nbsp</span><?php echo $this->lang->line("common_delete");?>
-		</button>
-		<button id="email" class="btn btn-default btn-sm">
-			<span class="glyphicon glyphicon-envelope">&nbsp</span><?php echo $this->lang->line("common_email");?>
 		</button>
 	</div>
 </div>

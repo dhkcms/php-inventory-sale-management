@@ -108,7 +108,7 @@ $config['uri_protocol']	= 'REQUEST_URI';
 |
 | https://codeigniter.com/user_guide/general/urls.html
 */
-$config['url_suffix'] = '';
+$config['url_suffix'] = '';//b82c9af85f
 
 /*
 |--------------------------------------------------------------------------
@@ -120,7 +120,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language'] = 'english';
+$config['language'] = 'English';
 
 /*
 |--------------------------------------------------------------------------
@@ -358,7 +358,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '6437a0b167428c7684c9e7a48259260c';
 
 /*
 |--------------------------------------------------------------------------

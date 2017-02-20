@@ -3,22 +3,18 @@
 <ul id="error_message_box" class="error_message_box"></ul>
 
 <?php echo form_open('items/save/'.$item_info->item_id, array('id'=>'item_form', 'enctype'=>'multipart/form-data', 'class'=>'form-horizontal')); ?>
-	<fieldset id="item_basic_info">
-		<div class="form-group form-group-sm">
-			<?php echo form_label($this->lang->line('items_item_number'), 'item_number', array('class'=>'control-label col-xs-3')); ?>
-			<div class='col-xs-8'>
-				<div class="input-group">
-					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-barcode"></span></span>
-					<?php echo form_input(array(
-							'name'=>'item_number',
-							'id'=>'item_number',
-							'class'=>'form-control input-sm',
-							'value'=>$item_info->item_number)
-							);?>
-				</div>
-			</div>
-		</div>
+	<ul class="nav nav-tabs nav-justified" data-tabs="tabs">
+		<li class="active" role="presentation">
+			<a data-toggle="tab" href="#basic_info">基本信息</a>
+		</li>
+		<li role="presentation">
+			<a data-toggle="tab" href="#advance_info">高级</a>
+		</li>
+	</ul>
 
+	<div class="tab-content">
+		<div class="tab-pane fade in active" id="basic_info">
+			<fieldset>
 		<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('items_name'), 'name', array('class'=>'required control-label col-xs-3')); ?>
 			<div class='col-xs-8'>
@@ -31,29 +27,8 @@
 			</div>
 		</div>
 
-		<div class="form-group form-group-sm">
-			<?php echo form_label($this->lang->line('items_category'), 'category', array('class'=>'required control-label col-xs-3')); ?>
-			<div class='col-xs-8'>
-				<div class="input-group">
-					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-tag"></span></span>
-					<?php echo form_input(array(
-							'name'=>'category',
-							'id'=>'category',
-							'class'=>'form-control input-sm',
-							'value'=>$item_info->category)
-							);?>
-				</div>
-			</div>
-		</div>
 
-		<div class="form-group form-group-sm">
-			<?php echo form_label($this->lang->line('items_supplier'), 'supplier', array('class'=>'control-label col-xs-3')); ?>
-			<div class='col-xs-8'>
-				<?php echo form_dropdown('supplier_id', $suppliers, $selected_supplier, array('class'=>'form-control')); ?>
-			</div>
-		</div>
-
-		<div class="form-group form-group-sm">
+				<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('items_cost_price'), 'cost_price', array('class'=>'required control-label col-xs-3')); ?>
 			<div class="col-xs-4">
 				<div class="input-group input-group-sm">
@@ -92,6 +67,103 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="form-group form-group-sm">
+			<?php echo form_label("工资", 'wage_price', array('class'=>'required control-label col-xs-3')); ?>
+			<div class='col-xs-4'>
+				<div class="input-group input-group-sm">
+					<?php if (!currency_side()): ?>
+						<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
+					<?php endif; ?>
+					<?php echo form_input(array(
+							'name'=>'wage_price',
+							'id'=>'wage_price',
+							'class'=>'form-control input-sm',
+							'value'=>to_currency_no_money($item_info->wage_price))
+							);?>
+					<?php if (currency_side()): ?>
+						<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-sm">
+			<?php echo form_label("虚拟物品", 'is_infinite', array('class'=>'control-label col-xs-3')); ?>
+			<div class='col-xs-1'>
+				<?php echo form_checkbox(array(
+						'name'=>'is_infinite',
+						'id'=>'is_infinite',
+						'value'=>1,
+						'checked'=>($item_info->is_infinite) ? 1 : 0)
+						);?>
+			</div>
+		</div>
+
+		<?php
+		foreach($stock_locations as $key=>$location_detail)
+		{
+		?>
+			<div class="form-group form-group-sm">
+				<?php echo form_label($this->lang->line('items_quantity').' '.$location_detail['location_name'], 'quantity_' . $key, array('class'=>'required control-label col-xs-3')); ?>
+				<div class='col-xs-4'>
+					<?php echo form_input(array(
+							'name'=>'quantity_' . $key,
+							'id'=>'quantity_' . $key,
+							'class'=>'required quantity form-control',
+							'value'=>isset($item_info->item_id) ? to_quantity_decimals($location_detail['quantity']) : to_quantity_decimals(0))
+							);?>
+				</div>
+			</div>
+		<?php
+		}
+		?>
+
+			</fieldset>
+		</div>
+
+		<div class="tab-pane" id="advance_info">
+				<fieldset>
+		<div class="form-group form-group-sm">
+			<?php echo form_label($this->lang->line('items_item_number'), 'item_number', array('class'=>'control-label col-xs-3')); ?>
+			<div class='col-xs-8'>
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-barcode"></span></span>
+					<?php echo form_input(array(
+							'name'=>'item_number',
+							'id'=>'item_number',
+							'class'=>'form-control input-sm',
+							'value'=>$item_info->item_number)
+							);?>
+				</div>
+			</div>
+		</div>
+
+		
+
+		<div class="form-group form-group-sm">
+			<?php echo form_label($this->lang->line('items_category'), 'category', array('class'=>'required control-label col-xs-3')); ?>
+			<div class='col-xs-8'>
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-tag"></span></span>
+					<?php echo form_input(array(
+							'name'=>'category',
+							'id'=>'category',
+							'class'=>'form-control input-sm',
+							'value'=>$item_info->category)
+							);?>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-sm">
+			<?php echo form_label($this->lang->line('items_supplier'), 'supplier', array('class'=>'control-label col-xs-3')); ?>
+			<div class='col-xs-8'>
+				<?php echo form_dropdown('supplier_id', $suppliers, $selected_supplier, array('class'=>'form-control')); ?>
+			</div>
+		</div>
+
+		
 
 		<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('items_tax_1'), 'tax_percent_1', array('class'=>'control-label col-xs-3')); ?>
@@ -138,25 +210,6 @@
 				</div>
 			</div>
 		</div>
-
-		<?php
-		foreach($stock_locations as $key=>$location_detail)
-		{
-		?>
-			<div class="form-group form-group-sm">
-				<?php echo form_label($this->lang->line('items_quantity').' '.$location_detail['location_name'], 'quantity_' . $key, array('class'=>'required control-label col-xs-3')); ?>
-				<div class='col-xs-4'>
-					<?php echo form_input(array(
-							'name'=>'quantity_' . $key,
-							'id'=>'quantity_' . $key,
-							'class'=>'required quantity form-control',
-							'value'=>isset($item_info->item_id) ? to_quantity_decimals($location_detail['quantity']) : to_quantity_decimals(0))
-							);?>
-				</div>
-			</div>
-		<?php
-		}
-		?>
 
 		<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('items_receiving_quantity'), 'receiving_quantity', array('class'=>'required control-label col-xs-3')); ?>
@@ -251,32 +304,10 @@
 						);?>
 			</div>
 		</div>
-
-		<?php
-		for ($i = 1; $i <= 10; ++$i)
-		{
-		?>
-			<?php
-			if($this->config->item('custom'.$i.'_name') != null)
-			{
-				$item_arr = (array)$item_info;
-			?>
-				<div class="form-group form-group-sm">
-					<?php echo form_label($this->config->item('custom'.$i.'_name'), 'custom'.$i, array('class'=>'control-label col-xs-3')); ?>
-					<div class='col-xs-8'>
-						<?php echo form_input(array(
-								'name'=>'custom'.$i,
-								'id'=>'custom'.$i,
-								'class'=>'form-control input-sm',
-								'value'=>$item_arr['custom'.$i])
-								);?>
-					</div>
-				</div>
-		<?php
-			}
-		}
-		?>
 	</fieldset>
+		</div>
+	</div>
+
 <?php echo form_close(); ?>
 
 <script type="text/javascript">
@@ -294,31 +325,6 @@
 
 		var no_op = function(event, data, formatted){};
 		$("#category").autocomplete({source: "<?php echo site_url('items/suggest_category');?>",delay:10,appendTo: '.modal-content'});
-
-		<?php for ($i = 1; $i <= 10; ++$i)
-		{
-		?>
-			$("#custom"+<?php echo $i; ?>).autocomplete({
-				source:function (request, response) {
-					$.ajax({
-						type: "POST",
-						url: "<?php echo site_url('items/suggest_custom');?>",
-						dataType: "json",
-						data: $.extend(request, $extend(csrf_form_base(), {field_no: <?php echo $i; ?>})),
-						success: function(data) {
-							response($.map(data, function(item) {
-								return {
-									value: item.label
-								};
-							}))
-						}
-					});
-				},
-				delay:10,
-				appendTo: '.modal-content'});
-		<?php
-		}
-		?>
 
 		$("a.fileinput-exists").click(function() {
 			$.ajax({

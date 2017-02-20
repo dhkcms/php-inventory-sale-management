@@ -51,7 +51,11 @@ class Employee extends Person
 
 		if($query->num_rows() == 1)
 		{
-			return $query->row();
+			$result=$query->row();
+
+			$result->location_name=$this->Stock_location->get_location_name_session($result->location_id);
+
+			return $result;
 		}
 		else
 		{
@@ -346,11 +350,16 @@ class Employee extends Person
 	/*
 	Gets information about the currently logged in employee.
 	*/
-	public function get_logged_in_employee_info()
+	public function get_logged_in_employee_info($reload=FALSE)
 	{
 		if($this->is_logged_in())
 		{
-			return $this->get_info($this->session->userdata('person_id'));
+			$user_info=$this->session->userdata('logged_in_employee_info');
+			if(empty($user_info)||$reload){//echo "load db";error_log("reload db");
+				$user_info=$this->get_info($this->session->userdata('person_id'));
+				$this->session->set_userdata('logged_in_employee_info',$user_info);
+			}
+			return $user_info;
 		}
 
 		return FALSE;
@@ -410,6 +419,14 @@ class Employee extends Person
 		$this->db->where('person_id', $person_id);
 
 		return $this->db->get()->result_array();
+	}
+
+	public function save_employee_location($location_id){
+		$this->db->where('person_id',$this->get_logged_in_employee_info()->person_id);
+		$success=$this->db->update('employees', array('location_id' => $location_id));
+		$this->get_logged_in_employee_info(TRUE);
+
+		return $success;
 	}
 }
 ?>

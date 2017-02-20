@@ -5,6 +5,7 @@ class Stock_location extends CI_Model
     {
         $this->db->from('stock_locations');  
         $this->db->where('location_name', $location_name);
+        $this->db->or_where('location_id', $location_name);
         
         return ($this->db->get()->num_rows() >= 1);
     }
@@ -21,10 +22,10 @@ class Stock_location extends CI_Model
     public function get_undeleted_all($module_id = 'items')
     {
         $this->db->from('stock_locations');
-        $this->db->join('permissions', 'permissions.location_id = stock_locations.location_id');
+        /*$this->db->join('permissions', 'permissions.location_id = stock_locations.location_id');
 		$this->db->join('grants', 'grants.permission_id = permissions.permission_id');
         $this->db->where('person_id', $this->session->userdata('person_id'));
-        $this->db->like('permissions.permission_id', $module_id, 'after');
+        $this->db->like('permissions.permission_id', $module_id, 'after');*/
         $this->db->where('deleted', 0);
 
         return $this->db->get();
@@ -57,10 +58,10 @@ class Stock_location extends CI_Model
 	public function is_allowed_location($location_id, $module_id = 'items')
 	{
 		$this->db->from('stock_locations');
-		$this->db->join('permissions', 'permissions.location_id = stock_locations.location_id');
+		/*$this->db->join('permissions', 'permissions.location_id = stock_locations.location_id');
 		$this->db->join('grants', 'grants.permission_id = permissions.permission_id');
 		$this->db->where('person_id', $this->session->userdata('person_id'));
-		$this->db->like('permissions.permission_id', $module_id, 'after');
+		$this->db->like('permissions.permission_id', $module_id, 'after');*/
 		$this->db->where('deleted', 0);
 		$this->db->where('stock_locations.location_id', $location_id);
 
@@ -69,14 +70,16 @@ class Stock_location extends CI_Model
     
     public function get_default_location_id()
     {
-    	$this->db->from('stock_locations');
+        return $this->Employee->get_logged_in_employee_info()->location_id;
+
+    	/*$this->db->from('stock_locations');
     	$this->db->join('permissions', 'permissions.location_id = stock_locations.location_id');
 		$this->db->join('grants', 'grants.permission_id = permissions.permission_id');
     	$this->db->where('person_id', $this->session->userdata('person_id'));
     	$this->db->where('deleted', 0);
     	$this->db->limit(1);
 
-    	return $this->db->get()->row()->location_id;
+    	return $this->db->get()->row()->location_id;*/
     }
     
     public function get_location_name($location_id) 
@@ -155,6 +158,33 @@ class Stock_location extends CI_Model
     	$this->db->trans_complete();
 		
 		return $this->db->trans_status();
+    }
+
+    public function store_all_to_session($override=TRUE){
+        if(!$override&&!empty($this->get_location_name_session())){
+            return;
+        }
+
+        $locations=array();//echo "load db";
+
+        foreach($this->get_all()->result() as $row){
+            $locations[$row->location_id]=$row->location_name;
+        }
+
+        $this->session->set_userdata('stock_locations',$locations);
+    }
+
+    public function get_location_name_session($location_id=null){
+        $locations=$this->session->userdata('stock_locations');
+
+        if(empty($location_id)){return $locations;}
+        else{return $locations[$location_id];}
+    }
+
+    public function get_info($location_id){
+        $obj;$obj->first_name=$this->get_location_name_session($location_id);
+
+        return $obj;
     }
 }
 ?>

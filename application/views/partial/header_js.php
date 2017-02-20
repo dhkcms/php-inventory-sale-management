@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	// live clock
-	var clock_tick = function clock_tick() {
+	/*var clock_tick = function clock_tick() {
 		setInterval('update_clock();', 1000);
 	}
 
@@ -14,7 +14,7 @@
 	$.notifyDefaults({ placement: {
 		align: '<?php echo $this->config->item('notify_horizontal_position'); ?>',
 		from: '<?php echo $this->config->item('notify_vertical_position'); ?>'
-	}});
+	}});*/
 
 	var post = $.post;
 

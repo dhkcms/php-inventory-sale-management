@@ -70,7 +70,7 @@ class Item extends CI_Model
 			$this->db->where('location_id', $filters['stock_location_id']);
 		}
 
-		$this->db->where('DATE_FORMAT(trans_date, "%Y-%m-%d") BETWEEN ' . $this->db->escape($filters['start_date']) . ' AND ' . $this->db->escape($filters['end_date']));
+		//$this->db->where('DATE_FORMAT(trans_date, "%Y-%m-%d") BETWEEN ' . $this->db->escape($filters['start_date']) . ' AND ' . $this->db->escape($filters['end_date']));
 
 		if(!empty($search))
 		{
@@ -82,21 +82,6 @@ class Item extends CI_Model
 					$this->db->or_like('items.item_id', $search);
 					$this->db->or_like('company_name', $search);
 					$this->db->or_like('category', $search);
-				$this->db->group_end();
-			}
-			else
-			{
-				$this->db->group_start();
-					$this->db->like('custom1', $search);
-					$this->db->or_like('custom2', $search);
-					$this->db->or_like('custom3', $search);
-					$this->db->or_like('custom4', $search);
-					$this->db->or_like('custom5', $search);
-					$this->db->or_like('custom6', $search);
-					$this->db->or_like('custom7', $search);
-					$this->db->or_like('custom8', $search);
-					$this->db->or_like('custom9', $search);
-					$this->db->or_like('custom10', $search);
 				$this->db->group_end();
 			}
 		}
@@ -408,29 +393,6 @@ class Item extends CI_Model
 					$suggestions[] = $entry;
 				}
 			}
-
-			//Search by custom fields
-			if($filters['search_custom'] != FALSE)
-			{
-				$this->db->from('items');
-				$this->db->group_start();
-					$this->db->like('custom1', $search);
-					$this->db->or_like('custom2', $search);
-					$this->db->or_like('custom3', $search);
-					$this->db->or_like('custom4', $search);
-					$this->db->or_like('custom5', $search);
-					$this->db->or_like('custom6', $search);
-					$this->db->or_like('custom7', $search);
-					$this->db->or_like('custom8', $search);
-					$this->db->or_like('custom9', $search);
-					$this->db->or_like('custom10', $search);
-				$this->db->group_end();
-				$this->db->where('deleted', $filters['is_deleted']);
-				foreach($this->db->get()->result() as $row)
-				{
-					$suggestions[] = array('value' => $row->item_id, 'label' => $row->name);
-				}
-			}
 		}
 
 		//only return $limit suggestions
@@ -479,7 +441,7 @@ class Item extends CI_Model
 	public function get_custom_suggestions($search, $field_no)
 	{
 		$suggestions = array();
-		$this->db->distinct();
+		/*$this->db->distinct();
 		$this->db->select('custom'.$field_no);
 		$this->db->from('items');
 		$this->db->like('custom'.$field_no, $search);
@@ -489,7 +451,7 @@ class Item extends CI_Model
 		{
 			$row_array = (array) $row;
 			$suggestions[] = array('label' => $row_array['custom'.$field_no]);
-		}
+		}*/
 	
 		return $suggestions;
 	}

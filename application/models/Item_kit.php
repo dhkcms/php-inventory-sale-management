@@ -70,6 +70,36 @@ class Item_kit extends CI_Model
 		}
 	}
 
+	public function _add_totals_to_item_kit($item_kit)
+	{
+		$item_kit->total_cost_price = 0;
+		$item_kit->total_unit_price = 0;
+		$item_kit->total_wage_price = 0;
+		
+		foreach($this->Item_kit_items->get_info($item_kit->item_kit_id) as $item_kit_item)
+		{
+			$item_info = $this->Item->get_info($item_kit_item['item_id']);
+			
+			$item_kit->total_cost_price += $item_info->cost_price * $item_kit_item['quantity'];
+			$item_kit->total_unit_price += $item_info->unit_price * $item_kit_item['quantity'];
+			$item_kit->total_wage_price += $item_info->wage_price * $item_kit_item['quantity'];
+		}
+
+		return $item_kit;
+	}
+	public function get_info_like_item($item_kit_id){
+		$item=$this->get_info($item_kit_id);
+
+		$item->item_id=$item_kit_id;$item->is_infinite=1;
+		
+		$item=$this->_add_totals_to_item_kit($item);
+		$item->unit_price=$item->total_unit_price;
+		$item->cost_price=$item->total_cost_price;
+		$item->wage_price=$item->total_wage_price;
+
+		return $item;
+	}
+
 	/*
 	Gets information about multiple item kits
 	*/
