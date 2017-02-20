@@ -1,2 +1,5 @@
-# php-inventory-sale-management
-ä½¿ç”¨php+mysqlå®ç°çš„ç”Ÿäº§ã€é‡‡è´­å’Œé”€å”®ç®¡ç†ç³»ç»Ÿï¼Œæ”¯æŒå¤šä»“åº“ã€‚
+#php-inventory-sale-management
+
+³õÊ¼°æ±¾£¬clone×ÔjekkosµÄ¿ªÔ´ÏîÄ¿[opensourcepos](https://github.com/jekkos/opensourcepos)£¬°æ±¾ºÅÊÇ3.0.2
+
+³ıÁËÕâ¸öreadmeÎÄ¼ş£¬Ã»ÓĞ×öÈÎºÎ¸ü¸Ä
