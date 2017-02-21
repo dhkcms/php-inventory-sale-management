@@ -30,7 +30,7 @@
 						<input class="form-control" placeholder="<?php echo $this->lang->line('login_password')?>" name="password" type="password" size=20></input>
 					</div>
 					
-					<input class="btn btn-primary btn-block" type="submit" name="loginButton" value="Go"/>
+					<input class="btn btn-primary btn-block" type="submit" name="loginButton" value="<?php echo $this->lang->line('login_go');?>"/>
 				</div>
 			</div>
 		<?php echo form_close(); ?>

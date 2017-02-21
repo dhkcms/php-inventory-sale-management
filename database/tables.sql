@@ -21,7 +21,7 @@ INSERT INTO `ospos_app_config` (`key`, `value`) VALUES
 ('fax', ''),
 ('phone', '555-555-5555'),
 ('return_policy', 'Test'),
-('timezone', 'Asia/Shanghai'),
+('timezone', 'Asia/Hong_Kong'),
 ('website', ''),
 ('company_logo', ''),
 ('tax_included', '0'),
@@ -60,12 +60,12 @@ INSERT INTO `ospos_app_config` (`key`, `value`) VALUES
 ('dateformat', 'Y/m/d'),
 ('timeformat', 'H:i:s'),
 ('currency_symbol', '￥'),
-('number_locale', 'en_US'),
+('number_locale', 'zh_cn'),
 ('thousands_separator', '0'),
 ('currency_decimals', '2'),
 ('tax_decimals', '2'),
 ('quantity_decimals', '0'),
-('country_codes', 'us'),
+('country_codes', 'zh'),
 ('msg_msg', ''),
 ('msg_uid', ''),
 ('msg_src', ''),
@@ -81,8 +81,8 @@ INSERT INTO `ospos_app_config` (`key`, `value`) VALUES
 ('receipt_template', 'receipt_default'),
 ('theme', 'flatly'),
 ('statistics', '0'),
-('language', 'english'),
-('language_code', 'en');
+('language', 'simplified-chinese'),
+('language_code', 'zh');
 
 
 -- --------------------------------------------------------

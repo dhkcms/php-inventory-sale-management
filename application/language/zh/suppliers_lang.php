@@ -1,18 +1,20 @@
 <?php 
 
-$lang["suppliers_account_number"] = "帳號 #";
-$lang["suppliers_cannot_be_deleted"] = "無法刪除所選擇的供應商，選定的供應商中至少有一家已有銷售紀錄。";
-$lang["suppliers_company_name"] = "公司名稱";
-$lang["suppliers_company_name_required"] = "公司名稱是必填欄位";
-$lang["suppliers_agency_name"] = " ";
-$lang["suppliers_confirm_delete"] = "你確定要刪除選定的供應商嗎？";
-$lang["suppliers_error_adding_updating"] = "新增/更新供應商錯誤";
-$lang["suppliers_new"] = "新增供應商";
-$lang["suppliers_none_selected"] = "您還沒有選擇任何供應商進行刪除";
-$lang["suppliers_one_or_multiple"] = "供應商";
-$lang["suppliers_successful_adding"] = "您已成功新增供應商";
-$lang["suppliers_successful_deleted"] = "您已成功刪除供應商";
-$lang["suppliers_successful_updating"] = "您已成功更新供應商";
-$lang["suppliers_supplier"] = "供應商";
-$lang["suppliers_supplier_id"] = "Id";
-$lang["suppliers_update"] = "更新供應商";
+
+
+$lang["suppliers_account_number"] ='账户号';
+$lang["suppliers_cannot_be_deleted"] ='不能删除选定的供应商,选择供应商的一个或多个销售。';
+$lang["suppliers_company_name"] ='公司名称';
+$lang["suppliers_company_name_required"] ='公司名称是一个必填的字段';
+$lang["suppliers_agency_name"] ='机构名称';
+$lang["suppliers_confirm_delete"] ='你确定你要删除选定的供应商吗?';
+$lang["suppliers_error_adding_updating"] ='错误添加/更新供应商';
+$lang["suppliers_new"] ='新供应商';
+$lang["suppliers_none_selected"] ='您还没有选择任何供应商删除';
+$lang["suppliers_one_or_multiple"] ='供应商';
+$lang["suppliers_successful_adding"] ='您已经成功添加供应商';
+$lang["suppliers_successful_deleted"] ='您已经成功删除';
+$lang["suppliers_successful_updating"] ='您已经成功更新供应商';
+$lang["suppliers_supplier"] ='供应商';
+$lang["suppliers_supplier_id"] ='Id';
+$lang["suppliers_update"] ='更新供应商';

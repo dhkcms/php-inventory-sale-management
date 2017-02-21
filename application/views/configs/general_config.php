@@ -60,7 +60,7 @@
 				</div>
 			</div>
 
-			<div class="form-group form-group-sm">	
+			<div class="form-group form-group-sm" hidden>	
 				<?php echo form_label($this->lang->line('config_default_sales_discount'), 'default_sales_discount', array('class' => 'control-label col-xs-2 required')); ?>
 				<div class='col-xs-2'>
 					<div class="input-group">
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 
-			<div class="form-group form-group-sm">	
+			<div class="form-group form-group-sm" hidden>	
 				<?php echo form_label($this->lang->line('config_receiving_calculate_average_price'), 'receiving_calculate_average_price', array('class' => 'control-label col-xs-2')); ?>
 				<div class='col-xs-1'>
 					<?php echo form_checkbox(array(
@@ -125,6 +125,7 @@
 				</div>
 			</div>
 
+			<div hidden>
 			<div class="form-group form-group-sm">	
 				<?php echo form_label($this->lang->line('config_statistics'), 'statistics', array('class' => 'control-label col-xs-2')); ?>
 				<div class='col-xs-2'>
@@ -247,6 +248,7 @@
 						'value'=>$this->config->item('custom10_name'))); ?>
 				</div>
 			</div>
+		</div>
 
 			<div class="form-group form-group-sm">	
 				<?php echo form_label($this->lang->line('config_backup_database'), 'config_backup_database', array('class' => 'control-label col-xs-2')); ?>

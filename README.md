@@ -2,7 +2,7 @@
 
 这个项目基于jekkos的开源项目[opensourcepos](https://github.com/jekkos/opensourcepos)，版本号是3.0.2
 
-目前实现一下一些功能：
+目前实现了如下一些功能：
 - 物品管理（将所有的商品、原材料以及虚拟物品放在一起管理）
 - 物品包管理（可以将一些相关的物品放进物品包，主要用于产品加工时的原材料的管理）
 - 物品销售、采购、加工制造
@@ -21,6 +21,8 @@
 
 数据库文件database/tables.sql为所有表的结构信息，database/data.sql为示例数据
 
+> 我们的设计原则是不试图统计用户所有订单的收支情况，而是致力于完整地保存每个订单以及生产的最真实和具体的情况。
+
 网页截图![Alt text](./screenshot.png)
 
-代码使用MIT协议，但应原始项目的要求，每个页面下方关于[opensourcepos](https://github.com/jekkos/opensourcepos)的描述和不能删除和修改。具体可以查看LICENSE文件。
+代码使用MIT协议，但应原始项目的要求，每个页面下方关于[opensourcepos](https://github.com/jekkos/opensourcepos)的描述不能删除和修改。具体可以查看LICENSE文件。

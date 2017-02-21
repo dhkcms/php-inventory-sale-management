@@ -1,7 +1,9 @@
 <?php 
 
-$lang["login_go"] = "登入";
-$lang["login_invalid_username_and_password"] = "錯誤的帳號或密碼";
-$lang["login_login"] = "登入";
-$lang["login_password"] = "密碼";
-$lang["login_username"] = "帳號";
+
+
+$lang["login_go"] ='登录';
+$lang["login_invalid_username_and_password"] ='无效的用户名/密码';
+$lang["login_login"] ='登录';
+$lang["login_password"] ='密码';
+$lang["login_username"] ='用户名';

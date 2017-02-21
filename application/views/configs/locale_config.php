@@ -86,7 +86,7 @@
 				</div>
 			</div>
 
-			<div class="form-group form-group-sm">
+			<div class="form-group form-group-sm" hidden>
 				<?php echo form_label($this->lang->line('config_payment_options_order'), 'payment_options_order', array('class' => 'control-label col-xs-2')); ?>
 				<div class='col-xs-4'>
 					<?php echo form_dropdown('payment_options_order', array(

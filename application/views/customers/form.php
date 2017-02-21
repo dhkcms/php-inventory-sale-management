@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		
-		<div class="form-group form-group-sm">
+		<div class="form-group form-group-sm" hidden>
 			<?php echo form_label($this->lang->line('customers_total'), 'total', array('class' => 'control-label col-xs-3')); ?>
 			<div class="col-xs-4">
 				<div class="input-group input-group-sm">
@@ -65,7 +65,7 @@
 			</div>	
 		</div>
 
-		<div class="form-group form-group-sm">
+		<div class="form-group form-group-sm" hidden>
 			<?php echo form_label($this->lang->line('customers_taxable'), 'taxable', array('class' => 'control-label col-xs-3')); ?>
 			<div class='col-xs-1'>
 				<?php echo form_checkbox('taxable', '1', $person_info->taxable == '' ? TRUE : (boolean)$person_info->taxable);?>

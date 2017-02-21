@@ -101,7 +101,7 @@ $transaction_editable=(!isset($transaction_editable)||$transaction_editable==1);
 								<a href="<?php if(1==$item['is_item_kit']){echo 'item_kits/view/';}else{echo 'items/view/';}echo $item['item_id'];?>" class="modal-dlg"><?php echo $item['name']; ?></a>
 
 								<?php if(0==$item['is_infinite']){?>
-								<br /> <?php echo '[' . to_quantity_decimals($item['in_stock']) . ' in ' . $item['stock_name'] . ']'; ?>
+								<br /> <?php echo '[' . $item['stock_name']  .' 有 '.  to_quantity_decimals($item['in_stock']) . ']'; ?>
 								<?php echo form_hidden('location', $item['item_location']); ?>
 								<?php } ?>
 							</td>
@@ -202,7 +202,7 @@ $transaction_editable=(!isset($transaction_editable)||$transaction_editable==1);
 				?>
 			</table>
 
-			<?php echo anchor($controller_name."/remove_".$partner_type, '<span class="glyphicon glyphicon-remove">&nbsp</span>' . $this->lang->line('common_remove').' '.$partner_type,
+			<?php echo anchor($controller_name."/remove_".$partner_type, '<span class="glyphicon glyphicon-remove">&nbsp</span>' . $this->lang->line('common_remove').' '.$this->lang->line($partner_type.'s_'.$partner_type),
 								array('class'=>'btn btn-danger btn-sm', 'id'=>'remove_customer_button')); ?>
 		<?php
 		}
@@ -212,7 +212,7 @@ $transaction_editable=(!isset($transaction_editable)||$transaction_editable==1);
 			<?php echo form_open($controller_name."/select_".$partner_type, array('id'=>'select_customer_form', 'class'=>'form-horizontal')); ?>
 				<div class="form-group" id="select_customer">
 					<label id="customer_label" for="customer" class="control-label" style="margin-bottom: 1em; margin-top: -1em;"><?php echo $this->lang->line($controller_name.'_select_'.$partner_type); ?></label>
-					<?php echo form_input(array('name'=>$partner_type, 'id'=>'customer', 'class'=>'form-control input-sm','placeholder'=>'输入并选择'.$partner_type.'的名字'));?>
+					<?php echo form_input(array('name'=>$partner_type, 'id'=>'customer', 'class'=>'form-control input-sm','placeholder'=>'输入并选择'.$this->lang->line($partner_type.'s_'.$partner_type).'的名字'));?>
 				</div>
 			<?php echo form_close(); ?>
 		<?php
