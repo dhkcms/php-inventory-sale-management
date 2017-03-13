@@ -48,11 +48,11 @@ class Sales extends Secure_Controller
 
 		$from_sale_id  = $this->input->get('from_id');
 
-		if(!$this->Employee->has_grant('reports_sales', $person_id))
+		/*if(!$this->Employee->has_grant('reports_sales', $person_id))
 		{
 			redirect('no_access/sales/reports_sales');
 		}
-		else
+		else*/
 		{
 			$data['table_headers'] = get_sales_manage_table_headers();
 
@@ -133,8 +133,8 @@ class Sales extends Secure_Controller
 			// if a valid receipt or invoice was found the search term will be replaced with a receipt number (POS #)
 			$suggestions[] = $receipt;
 		}
-		$suggestions = array_merge($suggestions, $this->Item->get_search_suggestions($search, array('search_custom' => FALSE, 'is_deleted' => FALSE), TRUE));
 		$suggestions = array_merge($suggestions, $this->Item_kit->get_search_suggestions($search));
+		$suggestions = array_merge($suggestions, $this->Item->get_search_suggestions($search, array('search_custom' => FALSE, 'is_deleted' => FALSE), TRUE));
 		
 		$suggestions = $this->xss_clean($suggestions);
 

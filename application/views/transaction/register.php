@@ -100,7 +100,7 @@ $transaction_editable=(!isset($transaction_editable)||$transaction_editable==1);
 							<td style="align: center;">
 								<a href="<?php if(1==$item['is_item_kit']){echo 'item_kits/view/';}else{echo 'items/view/';}echo $item['item_id'];?>" class="modal-dlg"><?php echo $item['name']; ?></a>
 
-								<?php if(0==$item['is_infinite']){?>
+								<?php if(false&&0==$item['is_infinite']){?>
 								<br /> <?php echo '[' . $item['stock_name']  .' 有 '.  to_quantity_decimals($item['in_stock']) . ']'; ?>
 								<?php echo form_hidden('location', $item['item_location']); ?>
 								<?php } ?>
@@ -280,7 +280,7 @@ $transaction_editable=(!isset($transaction_editable)||$transaction_editable==1);
 					<table class="sales_table_100" id="register">
 						<thead>
 							<tr>
-								<th style="width: 10%;"><?php echo $this->lang->line('common_delete'); ?></th>
+								<th style="width: 20%;"><?php echo $this->lang->line('common_delete'); ?></th>
 								<th style="width: 60%;"><?php echo $this->lang->line('sales_payment_type'); ?></th>
 								<th style="width: 20%;"><?php echo $this->lang->line('sales_payment_amount'); ?></th>
 							</tr>

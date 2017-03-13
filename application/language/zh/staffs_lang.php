@@ -11,6 +11,6 @@ $lang["staffs_none_selected"] ='您还没有选择任何员工删除';
 $lang["staffs_one_or_multiple"] ='员工';
 $lang["staffs_successful_adding"] ='您已经成功添加人员';
 $lang["staffs_successful_deleted"] ='您已经成功删除';
-$lang["staffs_successful_updating"] ='您已经成功更新的员工';
+$lang["staffs_successful_updating"] ='您已经成功更新员工信息';
 $lang["staffs_update"] ='更新员工';
 $lang["staffs_no_staffs_to_display"] ='没有员工';

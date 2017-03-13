@@ -21,8 +21,8 @@
 
 数据库文件database/tables.sql为所有表的结构信息，database/data.sql为示例数据
 
-> 我们的设计原则是不试图统计用户所有订单的收支情况，而是致力于完整地保存每个订单以及生产的最真实和具体的情况。
+> 相对于原始项目[opensourcepos](https://github.com/jekkos/opensourcepos)，我们更改的原则是不统计用户所有订单的收支情况，而是致力于完整地保存每个订单以及生产的最真实和具体的情况。
 
-网页截图![Alt text](./screenshot.png)
+网页截图![Alt text](./screenshot.png?raw=true)
 
 代码使用MIT协议，但应原始项目的要求，每个页面下方关于[opensourcepos](https://github.com/jekkos/opensourcepos)的描述不能删除和修改。具体可以查看LICENSE文件。

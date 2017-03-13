@@ -170,7 +170,7 @@ $(document).ready(function()
 		rules:
 		{
 			first_name: "required",
-			last_name: "required",
+			//last_name: "required",
 			username:
 			{
 				required:true,
