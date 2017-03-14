@@ -4,7 +4,7 @@
 		<div class="form-group form-group-sm">
 			<?php //echo form_label($this->lang->line('sales_receipt_number'), 'receipt_number', array('class'=>'control-label col-xs-3')); ?>
 			<?php //echo anchor('sales/receipt/'.$transaction_info['sale_id'], 'POS ' . $transaction_info['sale_id'], array('target'=>'_blank', 'class'=>'control-label col-xs-8', "style"=>"text-align:left"));?>
-			<?php echo form_label($controller_name."序号", 'id', array('class'=>'control-label col-xs-3')); ?>
+			<?php echo form_label($this->lang->line("module_".$controller_name)."序号", 'id', array('class'=>'control-label col-xs-3')); ?>
 			<div class='col-xs-8'>
 				<input class="form-control input-sm" value="<?php echo $transaction_info['transaction_id'];?>">
 			</div>
@@ -25,7 +25,7 @@
 		</div>
 		
 		<div class="form-group form-group-sm">
-			<?php echo form_label($this->lang->line('sales_employee'), 'employee', array('class'=>'control-label col-xs-3')); ?>
+			<?php echo form_label("创建者", 'employee', array('class'=>'control-label col-xs-3')); ?>
 			<div class='col-xs-8'>
 				<input class="form-control input-sm" value="<?php echo $employee_name;?>">
 			</div>

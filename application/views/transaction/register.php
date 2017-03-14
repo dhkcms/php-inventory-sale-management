@@ -50,7 +50,9 @@ $transaction_editable=(!isset($transaction_editable)||$transaction_editable==1);
 				<a href="<?php echo $controller_name;?>/show_help" class="modal-dlg btn btn-info btn-sm pull-right">帮助</a>
 				</li>-->
 
-
+				<li>
+				<a href="<?php echo $controller_name;?>/list_items" class="modal-dlg btn btn-info btn-sm pull-right">清单</a>
+				</li>
 			</ul>
 		</div>
 	<?php echo form_close(); ?>

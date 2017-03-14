@@ -713,6 +713,20 @@ class Sales extends Secure_Controller
 		echo $this->lang->line('sales_help');
 	}
 
+	public function list_items(){
+		$items=$this->sale_lib->get_cart();
+		$items=$this->sale_lib->unfold_cart($items);
+
+		echo '<table class="table"><thead><tr><th>名称</th><th>数量</th></tr></thead><tbody>';
+		foreach ($items as $item) {
+			$name=($this->Item->get_info($item['item_id'])->name);
+			$id=$item['quantity'];
+
+			echo "<tr><td>".$name."</td><td>".$id."</td></tr>";
+		}
+		echo "</tbody></table>";
+	}
+
 	public function receipt($sale_id)
 	{
 		$data = $this->_load_sale_data($sale_id);
